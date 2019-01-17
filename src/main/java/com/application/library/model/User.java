@@ -27,6 +27,12 @@ public class User {
     public User() {
     }
 
+    public User(String name, String password, Set<Role> roles) {
+        this.name = name;
+        this.password = password;
+        this.roles = roles;
+    }
+
     public User(User user) {
         this.roles = user.getRoles();
         this.employee_id = user.getEmployee_id();
