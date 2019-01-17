@@ -30,36 +30,7 @@ public class BorrowService {
     }
 
 
-
-
-    public void rentBook(Long bookId,Long personId)
-    {
-
-        LocalDateTime createdAt = LocalDateTime.now();
-
-        Optional<Book> book = Optional.ofNullable(bookRepositiry.findOne(bookId));
-        Optional<Person> person = Optional.ofNullable(personRepository.findOne(personId));
-
-
-        if(book.isPresent())
-        {
-            if(person.isPresent())
-            {
-                Borrow temp = new Borrow(createdAt,book.get(),person.get());
-                borrowRepository.save(temp);
-            }
-            else
-            {System.out.println("Nie udano dodac");}
-
-
-        }
-        else
-        {System.out.println("Nie udano dodac");}
-
-
-
-
-    }
+//TODO RENT AND DELATE
 
 
 }

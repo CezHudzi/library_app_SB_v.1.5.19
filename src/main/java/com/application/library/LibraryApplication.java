@@ -48,7 +48,7 @@ public class LibraryApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 
-		AutorCreateDTO autorOne = new AutorCreateDTO("Adam", "Mickiewicz");
+		AutorCreateDTO autorOne = new AutorCreateDTO("Adams", "Mickiewicz");
 		AutorCreateDTO autorTwo = new AutorCreateDTO("Juliusz", "Słowacki");
 		AutorCreateDTO autorThree = new AutorCreateDTO("Sigmunt", "Froud");
 

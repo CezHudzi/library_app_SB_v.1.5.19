@@ -4,6 +4,7 @@ package com.application.library.services;
 import com.application.library.mapperDTO.personmapper.PersonCreateDTO;
 import com.application.library.mapperDTO.personmapper.PersonMapper;
 import com.application.library.mapperDTO.personmapper.PersonResponse;
+import com.application.library.model.Autor;
 import com.application.library.model.Person;
 import com.application.library.repo.PersonRepository;
 import org.springframework.stereotype.Service;
@@ -45,4 +46,28 @@ public class PersonService {
         return personRepository.findAll().stream().map(personMapper::cereateResponse).collect(Collectors.toList());
 
     }
+
+
+
+    public Person getPersonById(Integer personId)
+    {
+
+        Optional<Person> person = Optional.ofNullable(personRepository.findOne(personId.longValue()));
+
+        if (person.isPresent())
+        {
+            return person.get();
+        }
+        else
+        {
+
+            return new Person();
+        }
+
+
+    }
+
+
+
+
 }
