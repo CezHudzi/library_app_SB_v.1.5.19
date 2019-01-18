@@ -3,36 +3,43 @@ package com.application.library.mapperDTO.borrowmapper;
 import com.application.library.model.Book;
 import com.application.library.model.Person;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class BorrowResponse {
 
-    private LocalDateTime borrowedAt;
-    private LocalDateTime returnAt;
-    private Integer fine;
+    private Integer borrowedAt;
+    private Integer returnAt;
+    private BigDecimal fine;
+    private BigDecimal fineEuro;
     private String bookname;
     private String name;
     private String surname;
 
-    public BorrowResponse(LocalDateTime borrowedAt, LocalDateTime returnAt, Integer fine,  String name, String surname, String bookname) {
+    public BorrowResponse(Integer borrowedAt, Integer returnAt, BigDecimal fine,BigDecimal fineEuro, String name, String surname, String bookname) {
         this.borrowedAt = borrowedAt;
         this.returnAt = returnAt;
         this.fine = fine;
+        this.fineEuro = fineEuro;
         this.bookname = bookname;
         this.name = name;
         this.surname=surname;
     }
 
+    public BigDecimal getFineEuro() {
+        return fineEuro;
+    }
 
-    public LocalDateTime getBorrowedAt() {
+    public Integer getBorrowedAt() {
         return borrowedAt;
     }
 
-    public LocalDateTime getReturnAt() {
+    public Integer getReturnAt() {
         return returnAt;
     }
 
-    public Integer getFine() {
+    public BigDecimal getFine() {
         return fine;
     }
 

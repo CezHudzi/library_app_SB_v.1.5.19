@@ -73,6 +73,32 @@ public class BorrowService {
         borrowRepository.delete(index);
     }
 
+    public void updateBorrow(Borrow borrow){
+
+
+
+        borrowRepository.save(borrow);
+    }
+
+
+    public Borrow getBorrowById(Integer borrowId)
+    {
+
+        Optional<Borrow> borrow = Optional.ofNullable(borrowRepository.findOne(borrowId.longValue()));
+
+        if (borrow.isPresent())
+        {
+            return borrow.get();
+        }
+        else
+        {
+
+            return new Borrow();
+        }
+
+
+    }
+
 
 
 
