@@ -32,10 +32,17 @@ public class BorrowController {
     }
 
 
-    @DeleteMapping
-    public void deleteBorrow(@RequestBody BorrowCreateDTO borrowDTO){
-        borrowService.delateRent(borrowDTO);
-    }
+   // @DeleteMapping
+   // public void deleteBorrow(@RequestBody BorrowCreateDTO borrowDTO){
+  //      borrowService.delateRent(borrowDTO);
+  //  }
+
+     @DeleteMapping
+     public void deleteBorrow(@RequestBody BorrowCreateDTO borrowDTO){
+          borrowService.delateRentWherIdBookIdUser(borrowDTO);
+      }
+
+
 
 
 

@@ -13,8 +13,12 @@ import com.application.library.repo.BookRepositiry;
 import com.application.library.repo.BorrowRepository;
 import com.application.library.repo.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
+import org.springframework.stereotype.Service;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +35,11 @@ public class BorrowService {
 
     private final PersonService personService;
     private final BookService bookService;
+
+
+    @PersistenceContext
+    private EntityManager manager;
+
 
     @Autowired
     public BorrowService(BookRepositiry bookRepositiry, PersonRepository personRepository,
@@ -72,6 +81,19 @@ public class BorrowService {
         Long index = borrowDTO.getBookId().longValue();
         borrowRepository.delete(index);
     }
+
+
+
+    @Transactional
+    @Rollback(true)
+    public void delateRentWherIdBookIdUser(BorrowCreateDTO borrowCreateDTO){
+
+        Query query = manager.createNativeQuery("DELETE FROM borrows WHERE borrows.book_id_book ="+borrowCreateDTO.getBookId() + "  AND borrows.person_id_user ="+borrowCreateDTO.getPersonId());
+        query.executeUpdate();
+
+    }
+
+
 
     public void updateBorrow(Borrow borrow){
 
