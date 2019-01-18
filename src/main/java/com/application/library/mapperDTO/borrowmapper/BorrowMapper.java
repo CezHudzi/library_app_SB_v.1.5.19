@@ -5,7 +5,9 @@ import com.application.library.model.Borrow;
 import com.application.library.model.Person;
 import com.application.library.services.BookService;
 import com.application.library.services.PersonService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BorrowMapper {
 
 
@@ -23,13 +25,13 @@ public class BorrowMapper {
     public Borrow createNew (BorrowCreateDTO borrowDTO){
 
         Person person = personService.getPersonById(borrowDTO.getPersonId());
-        Book book = bookService.getPersonById(borrowDTO.getBookId());
+        Book book = bookService.getBookById(borrowDTO.getBookId());
 
         return new Borrow(person, book);
     }
 
 
-    public BorrowResponse createResponse(Borrow borrow)
+    public BorrowResponse cereateResponse(Borrow borrow)
     {
         return new BorrowResponse(borrow.getBorrowedAt(), borrow.getReturnAt(), borrow.getFine(), borrow.getPerson(), borrow.getBook() );
     }

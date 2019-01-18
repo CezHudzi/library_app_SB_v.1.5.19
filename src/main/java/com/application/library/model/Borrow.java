@@ -15,7 +15,7 @@ public class Borrow {
     private LocalDateTime returnAt;
     private Integer fine;
 
-    @ManyToOne
+    @OneToOne
     private Book book;
 
     @ManyToOne

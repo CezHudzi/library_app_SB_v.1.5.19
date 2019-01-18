@@ -42,7 +42,7 @@ public class BookService {
     }
 
 
-    public Book getPersonById(Integer bookId)
+    public Book getBookById(Integer bookId)
     {
 
         Optional<Book> book = Optional.ofNullable(bookRepositiry.findOne(bookId.longValue()));

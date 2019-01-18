@@ -8,9 +8,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BorrowRepository extends JpaRepository<Borrow, Long> {
 
-
-
-
-
-
 }

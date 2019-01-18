@@ -2,6 +2,7 @@ package com.application.library;
 
 import com.application.library.mapperDTO.autormapper.AutorCreateDTO;
 import com.application.library.mapperDTO.bookmapper.BookCreateDTO;
+import com.application.library.mapperDTO.borrowmapper.BorrowCreateDTO;
 import com.application.library.mapperDTO.personmapper.PersonCreateDTO;
 import com.application.library.model.Role;
 import com.application.library.services.*;
@@ -23,6 +24,9 @@ public class LibraryApplication implements CommandLineRunner {
 	private final AutorService autorService;
 	private final RoleService roleService;
 	private final UserService userService;
+
+
+
 	@Autowired
 	public LibraryApplication(BookService bookService, PersonService personService, BorrowService borrowService, AutorService autorService, RoleService roleService, UserService userService) {
 		this.bookService = bookService;
@@ -31,6 +35,7 @@ public class LibraryApplication implements CommandLineRunner {
 		this.autorService = autorService;
 		this.roleService = roleService;
 		this.userService = userService;
+
 	}
 
 
@@ -89,9 +94,14 @@ public class LibraryApplication implements CommandLineRunner {
 		personService.addPerson(fourP);
 		personService.addPerson(fiveP);
 
-		//borrowService.rentBook(1L,2L);
-		//borrowService.rentBook(3L,2L);
-		//borrowService.rentBook(3L,2L);
+		BorrowCreateDTO rentFirst = new BorrowCreateDTO(1,2);
+		BorrowCreateDTO rentSecond = new BorrowCreateDTO(2,2);
+		BorrowCreateDTO rentThird = new BorrowCreateDTO(4,3);
+
+
+		borrowService.addRent(rentFirst);
+		borrowService.addRent(rentSecond);
+		borrowService.addRent(rentThird);
 
 		Role admin = new Role("ADMIN");
 		Role user = new Role("USER");
@@ -100,6 +110,8 @@ public class LibraryApplication implements CommandLineRunner {
 		roleService.addRole(user);
 
 		userService.addUser("admin", "root", admin);
+
+
 
 
 		System.out.println("-------------------------------------------------------------------------------------------------------------------------");

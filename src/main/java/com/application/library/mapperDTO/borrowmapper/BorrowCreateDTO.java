@@ -1,6 +1,13 @@
 package com.application.library.mapperDTO.borrowmapper;
 
+import com.application.library.services.PersonService;
+
 public class BorrowCreateDTO {
+
+
+
+
+
 
     public BorrowCreateDTO(Integer bookId, Integer personId) {
         this.bookId = bookId;
@@ -17,4 +24,15 @@ public class BorrowCreateDTO {
     public Integer getPersonId() {
         return personId;
     }
+
+
+    public Integer getBookObjectById() {
+        return bookId;
+    }
+
+    public Integer getPersonObjectById() {
+        return personId;
+    }
+
+
 }

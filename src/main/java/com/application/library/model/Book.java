@@ -29,8 +29,8 @@ public class Book {
     public Book() {
     }
 
-    @OneToMany (mappedBy = "book")
-    private Set<Borrow> borrow;
+    @OneToOne (mappedBy = "book")
+    private Borrow borrow;
 
 
 
@@ -62,7 +62,7 @@ public class Book {
     }
 
 
-    public Set<Borrow> getBorrow() {
+    public Borrow getBorrow() {
         return borrow;
     }
 
@@ -82,7 +82,7 @@ public class Book {
         this.bookName = bookName;
     }
 
-    public void setBorrow(Set<Borrow> borrow) {
+    public void setBorrow(Borrow borrow) {
         this.borrow = borrow;
     }
 
