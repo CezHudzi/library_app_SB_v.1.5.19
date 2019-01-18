@@ -10,16 +10,17 @@ public class BorrowResponse {
     private LocalDateTime borrowedAt;
     private LocalDateTime returnAt;
     private Integer fine;
-    private Book book;
-    private Person person;
+    private String bookname;
+    private String name;
+    private String surname;
 
-
-    public BorrowResponse(LocalDateTime borrowedAt, LocalDateTime returnAt, Integer fine,  Person person, Book book) {
+    public BorrowResponse(LocalDateTime borrowedAt, LocalDateTime returnAt, Integer fine,  String name, String surname, String bookname) {
         this.borrowedAt = borrowedAt;
         this.returnAt = returnAt;
         this.fine = fine;
-        this.book = book;
-        this.person = person;
+        this.bookname = bookname;
+        this.name = name;
+        this.surname=surname;
     }
 
 
@@ -35,11 +36,15 @@ public class BorrowResponse {
         return fine;
     }
 
-    public Book getBook() {
-        return book;
+    public String getBookname() {
+        return bookname;
     }
 
-    public Person getPerson() {
-        return person;
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
     }
 }

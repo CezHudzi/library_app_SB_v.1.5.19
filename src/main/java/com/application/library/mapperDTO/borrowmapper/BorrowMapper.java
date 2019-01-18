@@ -33,7 +33,7 @@ public class BorrowMapper {
 
     public BorrowResponse cereateResponse(Borrow borrow)
     {
-        return new BorrowResponse(borrow.getBorrowedAt(), borrow.getReturnAt(), borrow.getFine(), borrow.getPerson(), borrow.getBook() );
+        return new BorrowResponse(borrow.getBorrowedAt(), borrow.getReturnAt(), borrow.getFine(), borrow.getPersonName(), borrow.getPersonSurename(), borrow.getBookName() );
     }
 
 

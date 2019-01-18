@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @Table(name = "borrows")
 public class Borrow {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idBorrow;
@@ -58,6 +59,22 @@ public class Borrow {
 
 
     }
+
+
+    public String getPersonSurename(){
+        return person.getLastName();
+    }
+
+    public String getPersonName(){
+        return person.getFirstName();
+    }
+
+    public String getBookName(){
+        return book.getBookName();
+    }
+
+
+
 
 
 }
