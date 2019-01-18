@@ -3,22 +3,24 @@ package com.application.library.mapperDTO.borrowmapper;
 import com.application.library.model.Book;
 import com.application.library.model.Person;
 
+import javax.persistence.Column;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class BorrowResponse {
 
-    private Integer borrowedAt;
-    private Integer returnAt;
+    @Column(name = "created_at")
+    private String created_at;
+    private String returnAt;
     private BigDecimal fine;
     private BigDecimal fineEuro;
     private String bookname;
     private String name;
     private String surname;
 
-    public BorrowResponse(Integer borrowedAt, Integer returnAt, BigDecimal fine,BigDecimal fineEuro, String name, String surname, String bookname) {
-        this.borrowedAt = borrowedAt;
+    public BorrowResponse(String created_at, String returnAt, BigDecimal fine,BigDecimal fineEuro, String name, String surname, String bookname) {
+        this.created_at = created_at;
         this.returnAt = returnAt;
         this.fine = fine;
         this.fineEuro = fineEuro;
@@ -31,11 +33,11 @@ public class BorrowResponse {
         return fineEuro;
     }
 
-    public Integer getBorrowedAt() {
-        return borrowedAt;
+    public String getBorrowedAt() {
+        return created_at;
     }
 
-    public Integer getReturnAt() {
+    public String getReturnAt() {
         return returnAt;
     }
 

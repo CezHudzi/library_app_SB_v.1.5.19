@@ -81,6 +81,13 @@ public class BorrowService {
     }
 
 
+
+    public List<Borrow> gerBorrowPeriod(){
+
+        return borrowRepository.findAll();
+    }
+
+
     public Borrow getBorrowById(Integer borrowId)
     {
 

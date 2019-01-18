@@ -16,9 +16,11 @@ public class Borrow {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idBorrow;
-   // @Temporal(TemporalType.TIMESTAMP)
-    private Integer borrowedAt;
-    private Integer returnAt;
+
+   @Column(name = "updated_at")
+    private LocalDate updated_at;
+    @Column(name = "return_at")
+    private LocalDate returnAt;
     private BigDecimal fine;
     private BigDecimal fineEuro;
 
@@ -30,7 +32,7 @@ public class Borrow {
         this.fineEuro = fineEuro;
     }
 
-    @OneToOne
+    @ManyToOne
     private Book book;
 
     @ManyToOne
@@ -44,11 +46,11 @@ public class Borrow {
         return idBorrow;
     }
 
-    public Integer getBorrowedAt() {
-        return borrowedAt;
+    public LocalDate getBorrowedAt() {
+        return updated_at;
     }
 
-    public Integer getReturnAt() {
+    public LocalDate getReturnAt() {
         return returnAt;
     }
 
@@ -66,23 +68,16 @@ public class Borrow {
 
     public Borrow(Person person, Book book) {
 
-        this.borrowedAt = 30;
-        this.returnAt = 3;
+        this.updated_at = LocalDate.now();
+        this.returnAt = updated_at.plusDays(7);
         this.fine= BigDecimal.valueOf(0);
+        this.fineEuro= BigDecimal.valueOf(0);
         this.book = book;
         this.person = person;
 
     }
 
-    public Borrow(Integer index, Person person, Book book) {
-    this.idBorrow = index.longValue();
-        this.borrowedAt = 30;
-        this.returnAt = 3;
 
-        this.book = book;
-        this.person = person;
-
-    }
 
 
     public Borrow() {
@@ -94,11 +89,11 @@ public class Borrow {
         this.idBorrow = idBorrow;
     }
 
-    public void setBorrowedAt(Integer borrowedAt) {
-        this.borrowedAt = borrowedAt;
+    public void setBorrowedAt(LocalDate updated_at) {
+        this.updated_at = updated_at;
     }
 
-    public void setReturnAt(Integer returnAt) {
+    public void setReturnAt(LocalDate returnAt) {
         this.returnAt = returnAt;
     }
 
@@ -127,7 +122,11 @@ public class Borrow {
     }
 
 
+    public String getBorrowedAtString() {
+        return this.updated_at.toString();
+    }
 
-
-
+    public String getReturnAtString() {
+        return this.returnAt.toString();
+    }
 }

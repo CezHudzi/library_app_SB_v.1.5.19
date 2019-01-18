@@ -12,6 +12,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -111,8 +113,8 @@ public class LibraryApplication implements CommandLineRunner {
 
 		userService.addUser("admin", "root", admin);
 
-
-
+		LocalDate time =  LocalDate.now().minusDays(8);
+		borrowService.getBorrowById(2).setReturnAt(time);
 
 		System.out.println("-------------------------------------------------------------------------------------------------------------------------");
 		System.out.println("--------------------------------------------------------STARTED----------------------------------------------------------");

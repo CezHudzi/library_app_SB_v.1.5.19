@@ -11,11 +11,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.client.RestTemplate;
-
+import java.time.temporal.ChronoUnit;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 @Configuration
 @EnableScheduling
@@ -31,20 +35,28 @@ public class Period {
     }
 
 
-    @Scheduled(fixedRate=1000)
+    @Scheduled(fixedRate=10000)
     public void work() throws IOException {
 
 
 
 
+        List<Borrow> listBorrows = borrowService.gerBorrowPeriod();
+
+        for (Borrow i : listBorrows) {
 
 
-        Borrow borrow = borrowService.getBorrowById(1);
-        BigDecimal fine= borrow.getFine();
-        borrow.setFine(fine.add(BigDecimal.valueOf(100)));
-        borrow.setFineEuro(exchangeService.exchangeToEuro(fine));
+            LocalDate returnedAt = i.getReturnAt();
+            LocalDate today = LocalDate.now();
+            long days = DAYS.between(today, returnedAt);
+            if (days < 0) {
+                BigDecimal fine = BigDecimal.valueOf(days * -100);
+                i.setFine(fine);
+                i.setFineEuro(exchangeService.exchangeToEuro(fine));
+                borrowService.updateBorrow(i);
+            }
 
-        borrowService.updateBorrow(borrow);
+        }
 
     }
 }
