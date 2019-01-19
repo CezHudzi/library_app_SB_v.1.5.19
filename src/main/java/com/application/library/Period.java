@@ -35,7 +35,7 @@ public class Period {
     }
 
 
-    @Scheduled(fixedRate=10000)
+    @Scheduled(cron = "0 0 12 * * ?")
     public void work() throws IOException {
 
 

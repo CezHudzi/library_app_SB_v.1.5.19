@@ -13,7 +13,7 @@ public class BookResponse {
 
     private final long bookId;
     private final String bookName;
-    private final Set<Autor> autorList;
+    private final Set<String> autorList;
 
 
     public long getBookId() {
@@ -24,11 +24,11 @@ public class BookResponse {
         return bookName;
     }
 
-    public Set<Autor> getAutorList() {
+    public Set<String> getAutorList() {
         return autorList;
     }
 
-    BookResponse(long bookId, String bookName, Set<Autor> autorList) {
+    BookResponse(long bookId, String bookName, Set<String> autorList) {
         this.bookId = bookId;
         this.bookName = bookName;
         this.autorList = autorList;

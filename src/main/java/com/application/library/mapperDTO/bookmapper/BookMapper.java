@@ -25,7 +25,16 @@ public class BookMapper {
 
     public BookResponse cereateResponse(Book book)
     {
-        return new BookResponse(book.getIdBook(),book.getBookName(),book.getAuthor());
+        Set<Autor> autorSet= book.getAuthor();
+        Set<String> autorString= new HashSet();
+        for (Autor autor : autorSet)
+        {
+            autorString.add(autor.getFirstName()+"  "+autor.getLastName());
+
+        }
+
+
+        return new BookResponse(book.getIdBook(),book.getBookName(),autorString);
     }
 
 
