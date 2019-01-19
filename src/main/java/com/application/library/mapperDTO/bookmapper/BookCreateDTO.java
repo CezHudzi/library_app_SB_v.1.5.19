@@ -13,10 +13,7 @@ import java.util.Set;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "bookName",
-        "author"
-})
+
 public class BookCreateDTO {
 
 
@@ -40,6 +37,7 @@ public class BookCreateDTO {
 
     public Set<Integer> getAuthorSet()
     {
+
         return author;
     }
 }
