@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 public class BorrowResponse {
 
-    private Long borrowId;
+    private Long idBorrow;
     @Column(name = "created_at")
     private String created_at;
     private String returnAt;
@@ -20,8 +20,12 @@ public class BorrowResponse {
     private String name;
     private String surname;
 
-    public BorrowResponse( Long borrowId, String created_at, String returnAt, BigDecimal fine,BigDecimal fineEuro, String name, String surname, String bookname) {
-        this.borrowId = borrowId;
+
+
+    public BorrowResponse(  String created_at, String returnAt, BigDecimal fine,BigDecimal fineEuro, String name, String surname, String bookname, Long idBorrow) {
+
+
+        this.idBorrow = idBorrow;
         this.created_at = created_at;
         this.returnAt = returnAt;
         this.fine = fine;
@@ -30,6 +34,12 @@ public class BorrowResponse {
         this.name = name;
         this.surname=surname;
     }
+
+    public Long getIdBorrow() {
+        return idBorrow;
+    }
+
+
 
     public BigDecimal getFineEuro() {
         return fineEuro;

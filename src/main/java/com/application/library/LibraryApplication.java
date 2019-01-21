@@ -1,21 +1,29 @@
 package com.application.library;
 
+import com.application.library.exchange.api.ExchangeService;
 import com.application.library.mapperDTO.autormapper.AutorCreateDTO;
 import com.application.library.mapperDTO.bookmapper.BookCreateDTO;
 import com.application.library.mapperDTO.borrowmapper.BorrowCreateDTO;
 import com.application.library.mapperDTO.personmapper.PersonCreateDTO;
+import com.application.library.model.Borrow;
 import com.application.library.model.Role;
 import com.application.library.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 @SpringBootApplication
 public class LibraryApplication implements CommandLineRunner {
@@ -26,17 +34,18 @@ public class LibraryApplication implements CommandLineRunner {
 	private final AutorService autorService;
 	private final RoleService roleService;
 	private final UserService userService;
-
+	private final ExchangeService exchangeService;
 
 
 	@Autowired
-	public LibraryApplication(BookService bookService, PersonService personService, BorrowService borrowService, AutorService autorService, RoleService roleService, UserService userService) {
+	public LibraryApplication( ExchangeService exchangeService, BookService bookService, PersonService personService, BorrowService borrowService, AutorService autorService, RoleService roleService, UserService userService) {
 		this.bookService = bookService;
 		this.personService = personService;
 		this.borrowService = borrowService;
 		this.autorService = autorService;
 		this.roleService = roleService;
 		this.userService = userService;
+		this.exchangeService = exchangeService;
 
 	}
 
@@ -72,11 +81,11 @@ public class LibraryApplication implements CommandLineRunner {
 		autorsSecond.add(2);
 
 
-		BookCreateDTO one =  new BookCreateDTO("DZIADY", autorsFirst);
+		BookCreateDTO one =  new BookCreateDTO("Zbrodnia i Kara", autorsFirst);
 		BookCreateDTO two =  new BookCreateDTO("Dziady", autorsFirst);
 		BookCreateDTO three =  new BookCreateDTO("Historia Rzymu", autorsSecond);
 		BookCreateDTO four =  new BookCreateDTO("Harry Potter", autorsSecond);
-		BookCreateDTO five =  new BookCreateDTO("Pachnidlo", autorsFirst);
+		BookCreateDTO five =  new BookCreateDTO("O jeden most za daleko", autorsFirst);
 
 		bookService.addBook(one);
 		bookService.addBook(two);
@@ -84,11 +93,11 @@ public class LibraryApplication implements CommandLineRunner {
 		bookService.addBook(four);
 		bookService.addBook(five);
 
-		PersonCreateDTO oneP = new PersonCreateDTO("IZ" , "Vo");
-		PersonCreateDTO twoP = new PersonCreateDTO("Pawel", "Dem");
+		PersonCreateDTO oneP = new PersonCreateDTO("Alicja" , "Kowalska");
+		PersonCreateDTO twoP = new PersonCreateDTO("Pawel", "Demendyn");
 		PersonCreateDTO threeP = new PersonCreateDTO("Adam", "Maklowicz");
 		PersonCreateDTO fourP = new PersonCreateDTO("Maciek", "Kur");
-		PersonCreateDTO fiveP = new PersonCreateDTO("Asia", "Zag");
+		PersonCreateDTO fiveP = new PersonCreateDTO("Asia", "Trzebiatowska");
 
 		personService.addPerson(oneP);
 		personService.addPerson(twoP);
@@ -116,10 +125,30 @@ public class LibraryApplication implements CommandLineRunner {
 		LocalDate time =  LocalDate.now().minusDays(8);
 		borrowService.getBorrowById(2).setReturnAt(time);
 
+
+		Period init = new Period(borrowService,exchangeService);
+		init.oneDayCheck();
+
+
+
+
+
+
+
+
 		System.out.println("-------------------------------------------------------------------------------------------------------------------------");
 		System.out.println("--------------------------------------------------------STARTED----------------------------------------------------------");
 		System.out.println("-------------------------------------------------------------------------------------------------------------------------");
 	}
+
+
+
+
+
+
+
+
+
 }
 
 

@@ -6,11 +6,15 @@ import com.application.library.model.Borrow;
 import com.application.library.services.BorrowService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
 import java.time.temporal.ChronoUnit;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -35,17 +39,17 @@ public class Period {
     }
 
 
+
+
+
+
+
     @Scheduled(cron = "0 0 12 * * ?")
-    public void work() throws IOException {
-
-
-
+    public void oneDayCheck() throws IOException {
 
         List<Borrow> listBorrows = borrowService.gerBorrowPeriod();
 
         for (Borrow i : listBorrows) {
-
-
             LocalDate returnedAt = i.getReturnAt();
             LocalDate today = LocalDate.now();
             long days = DAYS.between(today, returnedAt);
@@ -55,7 +59,6 @@ public class Period {
                 i.setFineEuro(exchangeService.exchangeToEuro(fine));
                 borrowService.updateBorrow(i);
             }
-
         }
 
     }

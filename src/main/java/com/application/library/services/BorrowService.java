@@ -69,7 +69,9 @@ public class BorrowService {
 
 
     public List<BorrowResponse> getAllBorrowServ() {
-        return borrowRepository.findAll().stream().map(borrowMapper::cereateResponse).collect(Collectors.toList());
+
+        return borrowRepository.findAll().stream().map(borrowMapper::cereateResponse)
+              .collect(Collectors.toList());
     }
 
 
@@ -77,8 +79,8 @@ public class BorrowService {
 
 
 
-    public void delateRent(BorrowCreateDTO borrowDTO){
-        Long index = borrowDTO.getBookId().longValue();
+    public void delateRent(Integer borrowId){
+        Long index = borrowId.longValue();
         borrowRepository.delete(index);
     }
 
