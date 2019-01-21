@@ -56,7 +56,6 @@ public class BorrowService {
 
 
 
-
     public void addRent(BorrowCreateDTO borrowDTO){
         borrowRepository.save(borrowMapper.createNew(borrowDTO));
     }
@@ -75,7 +74,15 @@ public class BorrowService {
     }
 
 
-    //TODO DELETE WITH ID FINDER
+
+
+
+    public void extednRentSevenDays(Integer borrowId) {
+        Long index = borrowId.longValue();
+        Borrow borrow = borrowRepository.findOne(index);
+        borrow.setReturnAt(borrow.getReturnAt().plusDays(7));
+        borrowRepository.save(borrow);
+    }
 
 
 

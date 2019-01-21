@@ -38,6 +38,12 @@ public class BorrowController {
         borrowService.delateRent(borrowDTO.getPersonId());
     }
 
+    @PutMapping
+    public void  extendRent(@RequestBody BorrowCreateDTO borrowDTO) {
+        borrowService.extednRentSevenDays(borrowDTO.getPersonId());
+    }
+
+
    //  @DeleteMapping
    //  public void deleteBorrow(@RequestBody BorrowCreateDTO borrowDTO){
    //       borrowService.delateRentWherIdBookIdUser(borrowDTO);
