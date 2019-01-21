@@ -78,6 +78,7 @@ public class BorrowService {
 
 
     public void extednRentSevenDays(Integer borrowId) {
+
         Long index = borrowId.longValue();
         Borrow borrow = borrowRepository.findOne(index);
         borrow.setReturnAt(borrow.getReturnAt().plusDays(7));
@@ -88,6 +89,12 @@ public class BorrowService {
 
     public void delateRent(Integer borrowId){
         Long index = borrowId.longValue();
+         Borrow borrow = borrowRepository.getOne(index);
+
+        Book book = borrow.getBook();
+        
+        book.setAvalable(true);
+
         borrowRepository.delete(index);
     }
 

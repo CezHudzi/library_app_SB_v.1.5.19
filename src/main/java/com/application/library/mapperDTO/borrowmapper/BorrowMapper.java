@@ -26,7 +26,7 @@ public class BorrowMapper {
 
         Person person = personService.getPersonById(borrowDTO.getPersonId());
         Book book = bookService.getBookById(borrowDTO.getBookId());
-
+        book.setAvalable(false);
         return new Borrow(person, book);
     }
 

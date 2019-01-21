@@ -12,6 +12,7 @@ public class Book {
     public Book(String bookName, Set<Autor> author) {
         this.bookName = bookName;
         this.author = author;
+        this.avalable= true;
     }
 
     @Id
@@ -27,6 +28,7 @@ public class Book {
     }
 
     public Book() {
+        this.avalable = true;
     }
 
     @OneToMany (mappedBy = "book")
@@ -43,10 +45,15 @@ public class Book {
     private Set<Autor> author;
 
 
+    private boolean avalable;
 
+    public boolean isAvalable() {
+        return avalable;
+    }
 
-
-
+    public void setAvalable(boolean avalable) {
+        this.avalable = avalable;
+    }
 
     public Long getIdBook() {
         return idBook;

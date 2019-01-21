@@ -14,7 +14,7 @@ public class BookResponse {
     private final long bookId;
     private final String bookName;
     private final Set<String> autorList;
-
+    private final boolean avalable;
 
     public long getBookId() {
         return bookId;
@@ -28,9 +28,14 @@ public class BookResponse {
         return autorList;
     }
 
-    BookResponse(long bookId, String bookName, Set<String> autorList) {
+    public boolean isAvalable() {
+        return avalable;
+    }
+
+    BookResponse(long bookId, String bookName, Set<String> autorList, boolean avalable) {
         this.bookId = bookId;
         this.bookName = bookName;
         this.autorList = autorList;
+        this.avalable = avalable;
     }
 }

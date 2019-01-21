@@ -34,7 +34,7 @@ public class BookMapper {
         }
 
 
-        return new BookResponse(book.getIdBook(),book.getBookName(),autorString);
+        return new BookResponse(book.getIdBook(),book.getBookName(),autorString, book.isAvalable());
     }
 
 

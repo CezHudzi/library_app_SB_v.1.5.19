@@ -24,6 +24,8 @@ public class Borrow {
     private BigDecimal fine;
     private BigDecimal fineEuro;
 
+
+
     public BigDecimal getFineEuro() {
         return fineEuro;
     }

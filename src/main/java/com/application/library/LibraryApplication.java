@@ -108,11 +108,13 @@ public class LibraryApplication implements CommandLineRunner {
 		BorrowCreateDTO rentFirst = new BorrowCreateDTO(1,2);
 		BorrowCreateDTO rentSecond = new BorrowCreateDTO(2,2);
 		BorrowCreateDTO rentThird = new BorrowCreateDTO(4,3);
-
+		BorrowCreateDTO rentFive = new BorrowCreateDTO(5,2);
 
 		borrowService.addRent(rentFirst);
 		borrowService.addRent(rentSecond);
 		borrowService.addRent(rentThird);
+		borrowService.addRent(rentFive);
+
 
 		Role admin = new Role("ADMIN");
 		Role user = new Role("USER");
@@ -124,6 +126,9 @@ public class LibraryApplication implements CommandLineRunner {
 
 		LocalDate time =  LocalDate.now().minusDays(8);
 		borrowService.getBorrowById(2).setReturnAt(time);
+
+
+		borrowService.getBorrowById(1).setReturnAt(time.minusDays(9));
 
 
 		Period init = new Period(borrowService,exchangeService);
