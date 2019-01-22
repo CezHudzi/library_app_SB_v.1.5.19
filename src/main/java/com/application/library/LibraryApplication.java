@@ -8,12 +8,16 @@ import com.application.library.mapperDTO.personmapper.PersonCreateDTO;
 import com.application.library.model.Borrow;
 import com.application.library.model.Role;
 import com.application.library.services.*;
+import org.apache.catalina.filters.CorsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -48,6 +52,10 @@ public class LibraryApplication implements CommandLineRunner {
 		this.exchangeService = exchangeService;
 
 	}
+
+
+
+
 
 
 

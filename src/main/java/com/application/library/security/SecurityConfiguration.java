@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
@@ -30,16 +31,36 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 
+
+
+
+
     @Override
+
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable();
-        http.authorizeRequests()
-                .antMatchers("**/books/**").authenticated()
-                .anyRequest().permitAll()
-                .and()
-                .formLogin().defaultSuccessUrl("/rest/hello/secured/all").permitAll();
+       http.addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class);
+
+       http
+
+               .authorizeRequests()
+
+               .antMatchers("/")
+
+              .permitAll()
+
+               .anyRequest()
+
+    .fullyAuthenticated()
+
+              .and()
+
+              .httpBasic()
+
+              .and().csrf().disable();
+
     }
+
 
 
     private PasswordEncoder getPasswordEncoder() {
@@ -51,7 +72,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
             @Override
             public boolean matches(CharSequence charSequence, String s) {
-                return true;
+
+                Boolean isGood;
+                if(charSequence.equals(s))
+                {
+                    isGood=true;
+                }
+                else {
+                    isGood=false;
+                }
+
+                return isGood;
             }
         };
     }

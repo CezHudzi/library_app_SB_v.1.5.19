@@ -5,6 +5,7 @@ package com.application.library.controller;
 import com.application.library.mapperDTO.bookmapper.BookCreateDTO;
 import com.application.library.mapperDTO.bookmapper.BookResponse;
 import com.application.library.services.BookService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class BookController {
     }
 
 
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping
     public List<BookResponse> getAllPerson()
     {
