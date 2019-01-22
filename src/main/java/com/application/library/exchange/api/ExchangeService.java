@@ -20,16 +20,21 @@ public class ExchangeService {
 
     public BigDecimal exchangeToEuro(BigDecimal amount) {
 
+        Map<String, ExternalCurrencyExchange> map = new HashMap<>();
+
+        try {
         String url = "https://free.currencyconverterapi.com/api/v5/convert?q=PLN_EUR&compact=y";
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-        Map<String, ExternalCurrencyExchange> map = new HashMap<>();
+
         ObjectMapper objectMapper = new ObjectMapper();
-        try {
+
             map = objectMapper.readValue(response.getBody(), new TypeReference<HashMap<String, ExternalCurrencyExchange>>() {
             });
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("API DOWN. USE CONST VARIABLE");
+            return amount.multiply(BigDecimal.valueOf(0.23));
+
         }
 
         return amount.multiply(map.get("PLN_EUR").getVal());

@@ -44,7 +44,7 @@ public class Period {
 
 
 
-    @Scheduled(cron = "0 0 12 * * ?")
+    @Scheduled(cron = "0 0 18 * * ?")
     public void oneDayCheck() throws IOException {
 
         List<Borrow> listBorrows = borrowService.gerBorrowPeriod();

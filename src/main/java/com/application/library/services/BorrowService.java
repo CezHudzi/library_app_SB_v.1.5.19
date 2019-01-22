@@ -1,14 +1,12 @@
 package com.application.library.services;
 
 
-import com.application.library.mapperDTO.bookmapper.BookMapper;
-import com.application.library.mapperDTO.bookmapper.BookResponse;
 import com.application.library.mapperDTO.borrowmapper.BorrowCreateDTO;
 import com.application.library.mapperDTO.borrowmapper.BorrowMapper;
 import com.application.library.mapperDTO.borrowmapper.BorrowResponse;
 import com.application.library.model.Book;
 import com.application.library.model.Borrow;
-import com.application.library.model.Person;
+
 import com.application.library.repo.BookRepositiry;
 import com.application.library.repo.BorrowRepository;
 import com.application.library.repo.PersonRepository;
@@ -61,10 +59,6 @@ public class BorrowService {
     }
 
 
-    public void getRent(BorrowCreateDTO borrowDTO){
-        borrowRepository.save(borrowMapper.createNew(borrowDTO));
-    }
-
 
 
     public List<BorrowResponse> getAllBorrowServ() {
@@ -92,7 +86,7 @@ public class BorrowService {
          Borrow borrow = borrowRepository.getOne(index);
 
         Book book = borrow.getBook();
-        
+
         book.setAvalable(true);
 
         borrowRepository.delete(index);
