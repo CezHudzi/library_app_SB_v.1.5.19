@@ -139,8 +139,8 @@ public class LibraryApplication implements CommandLineRunner {
 		borrowService.getBorrowById(1).setReturnAt(time.minusDays(9));
 
 
-		Period init = new Period(borrowService,exchangeService);
-		init.oneDayCheck();
+		//Period init = new Period(borrowService,exchangeService);
+	///	init.oneDayCheck();
 
 
 

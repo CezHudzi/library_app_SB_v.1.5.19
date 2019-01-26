@@ -43,8 +43,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
        http
 
-               .authorizeRequests()
-
+               .authorizeRequests().antMatchers("/valid").permitAll()
                .antMatchers("/")
 
               .permitAll()

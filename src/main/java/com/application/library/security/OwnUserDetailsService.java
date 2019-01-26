@@ -17,8 +17,14 @@ public class OwnUserDetailsService implements UserDetailsService {
     private UserRepository usersRepository;
 
 
+    public String getPass(OwnUserDetails user){
+        return user.getPassword();
+    }
+
+
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public OwnUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         Optional<User> optionalUsers = usersRepository.findByName(username);
 
