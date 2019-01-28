@@ -19,6 +19,7 @@ import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
     @Autowired
     private OwnUserDetailsService ownUserDetailsService;
 

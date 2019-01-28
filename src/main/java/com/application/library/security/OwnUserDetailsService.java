@@ -13,8 +13,12 @@ import java.util.Optional;
 @Service
 public class OwnUserDetailsService implements UserDetailsService {
 
+    private final UserRepository usersRepository;
+
     @Autowired
-    private UserRepository usersRepository;
+    public OwnUserDetailsService(UserRepository usersRepository) {
+        this.usersRepository = usersRepository;
+    }
 
 
     public String getPass(OwnUserDetails user){

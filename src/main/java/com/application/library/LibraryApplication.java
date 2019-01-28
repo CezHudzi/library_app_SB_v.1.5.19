@@ -8,16 +8,12 @@ import com.application.library.mapperDTO.personmapper.PersonCreateDTO;
 import com.application.library.model.Borrow;
 import com.application.library.model.Role;
 import com.application.library.services.*;
-import org.apache.catalina.filters.CorsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -55,10 +51,6 @@ public class LibraryApplication implements CommandLineRunner {
 
 
 
-
-
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(LibraryApplication.class, args);
 
@@ -73,7 +65,7 @@ public class LibraryApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 
-		AutorCreateDTO autorOne = new AutorCreateDTO("Adams", "Mickiewicz");
+		AutorCreateDTO autorOne = new AutorCreateDTO("Adam", "Mickiewicz");
 		AutorCreateDTO autorTwo = new AutorCreateDTO("Juliusz", "Słowacki");
 		AutorCreateDTO autorThree = new AutorCreateDTO("Sigmunt", "Froud");
 
@@ -131,6 +123,7 @@ public class LibraryApplication implements CommandLineRunner {
 		roleService.addRole(user);
 
 		userService.addUser("admin", "root", admin);
+        userService.addUser("user", "user", user);
 
 		LocalDate time =  LocalDate.now().minusDays(8);
 		borrowService.getBorrowById(2).setReturnAt(time);
@@ -139,8 +132,8 @@ public class LibraryApplication implements CommandLineRunner {
 		borrowService.getBorrowById(1).setReturnAt(time.minusDays(9));
 
 
-		//Period init = new Period(borrowService,exchangeService);
-	///	init.oneDayCheck();
+		Period init = new Period(borrowService,exchangeService);
+		init.oneDayCheck();
 
 
 

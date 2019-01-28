@@ -4,6 +4,7 @@ package com.application.library.controller;
 import com.application.library.mapperDTO.personmapper.PersonCreateDTO;
 import com.application.library.mapperDTO.personmapper.PersonResponse;
 import com.application.library.services.PersonService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class PersonController {
 
 
 
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping
     public void addPerson(@RequestBody PersonCreateDTO person) {
         personService.addPerson(person);

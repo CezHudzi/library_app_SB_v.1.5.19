@@ -23,14 +23,14 @@ public class BookController {
     }
 
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+
     @GetMapping
     public List<BookResponse> getAllPerson()
     {
         return bookService.getAllBookServ();
     }
 
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping
     public void addBook(@RequestBody BookCreateDTO bookDTO) {
         bookService.addBook(bookDTO);
